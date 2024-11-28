@@ -12,11 +12,12 @@ int main(int argc, const char * argv[]) {
         RazerDevice device = razerDevices[i];
         printf("%#06x\n", device.productId);
 
-        // Testing out the blackwidow v3 pro changes by switching to wave
-        if (device.productId == 0x025A)
+        // Testing out the deathstalker v2 pro to set static green color
+        if (device.productId == 0x0292)
         {
-            printf("Found blackwidow v3 pro keyboard (wired)\n");
-            razer_attr_write_mode_wave(device.usbDevice, "1", 0, 0x90);
+            printf("Found deathstalker v2 pro keyboard (wired)\n");
+            char color[] = {0x00, 0xff, 0x00};
+            razer_attr_write_mode_static(device.usbDevice, color, 3);
         }
     }
 
